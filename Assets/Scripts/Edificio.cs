@@ -1,12 +1,49 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Edificio : MonoBehaviour{
-    public GameObject[] Entrepisos;
-    public GameObject[] Niveles;
-    public GameObject[] Cableado;
-    public GameObject[] Tuberias;
+    public Transform    camara;
+    public GameObject[] Invisibles;
+    public GameObject   Azotea;
 
-    public Transform camara;
+    public GameObject[] Muros;
+    public GameObject[] Suelos;
+    public GameObject[] Tuberias;
+    public GameObject[] Cableado;
+
+    private void Start(){
+        desactivar();
+    }
+
+    public void activar(){
+        foreach( GameObject obj in Invisibles ){
+            obj.SetActive( true );
+        }
+    }
+
+    public void desactivar(){
+        Azotea.SetActive( true );
+        foreach( GameObject obj in Muros ){
+            obj.SetActive( true );
+        }
+
+        foreach( GameObject obj in Suelos ){
+            obj.SetActive( true );
+        }
+
+        foreach( GameObject obj in Tuberias ){
+            obj.SetActive( true );
+        }
+
+        foreach( GameObject obj in Cableado ){
+            obj.SetActive( true );
+        }
+
+        foreach( GameObject obj in Invisibles ){
+            obj.SetActive( false );
+        }
+    }
+
 }
