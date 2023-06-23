@@ -16,30 +16,19 @@ public class GameManager : MonoBehaviour{
     public Edificio EdificioActual = null;
 
     private void Start(){
-        ToggleSelector.SetActive( false );
-        Selector_Componentes.gameObject.SetActive( false );
         Controlador_camara.reset();
-        setActiveEdificios( true );
-        ToggleSelector.SetActive( false );
-        TextoEdificioActual.text = "Vista general";
+        refresh();
     }
 
     private void Update(){
         if( Input.GetKeyDown( KeyCode.R ) ){
-            if( EdificioActual ){
-                EdificioActual.desactivar();
-            }
-
-            EdificioActual = null;
             Start();
+            EdificioActual = null;
         }
 
         for( int i = 0; i < 5; i++ ){
             if( Input.GetKeyDown( KeyCode.Keypad1 + i ) || Input.GetKeyDown( KeyCode.Alpha1 + i ) ){
-                if( EdificioActual ){
-                    EdificioActual.desactivar();
-                }
-
+                refresh();
                 EdificioActual = EdificiosDisponibles[i];
                 Controlador_camara.goToCamera( EdificioActual.camara );
                 setActiveEdificios( false );
@@ -51,6 +40,19 @@ public class GameManager : MonoBehaviour{
                 break;
             }
         }
+    }
+
+    private void refresh(){
+        if( EdificioActual ){
+            EdificioActual.desactivar();
+        }
+
+        ToggleSelector.SetActive( false );
+        Selector_Componentes.gameObject.SetActive( false );
+
+        setActiveEdificios( true );
+        ToggleSelector.SetActive( false );
+        TextoEdificioActual.text = "Vista general";
     }
 
     private void setActiveEdificios( bool estado ){
