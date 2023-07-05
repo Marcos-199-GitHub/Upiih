@@ -7,8 +7,8 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour{
     public ControladorCamara Controlador_camara;
     public GameObject        ToggleSelector;
-
-    public Text TextoEdificioActual;
+    public GameObject        ToggleEscritorios;
+    public Text              TextoEdificioActual;
 
     public SelectorComponentes Selector_Componentes;
     public Edificio[]          EdificiosDisponibles;
@@ -40,6 +40,8 @@ public class GameManager : MonoBehaviour{
                 break;
             }
         }
+
+        ToggleEscritorios.SetActive( EdificioActual != null && EdificioActual.Escritorios != null );
     }
 
     private void refresh(){
@@ -65,21 +67,29 @@ public class GameManager : MonoBehaviour{
         EdificioActual.Azotea.SetActive( estado );
     }
 
+    public void setActiveEscritorios( bool estado ){
+        EdificioActual.Escritorios.SetActive( estado );
+    }
+
     //Muros
     public void setActiveMurosPlantaBaja( bool estado ){
         EdificioActual.Muros[0].SetActive( estado );
+        EdificioActual.Puertas[0].SetActive( estado );
     }
 
     public void setActiveMurosPiso1( bool estado ){
         EdificioActual.Muros[1].SetActive( estado );
+        EdificioActual.Puertas[1].SetActive( estado );
     }
 
     public void setActiveMurosPiso2( bool estado ){
         EdificioActual.Muros[2].SetActive( estado );
+        EdificioActual.Puertas[2].SetActive( estado );
     }
 
     public void setActiveMurosPiso3( bool estado ){
         EdificioActual.Muros[3].SetActive( estado );
+        EdificioActual.Puertas[3].SetActive( estado );
     }
 
     //Suelos
@@ -117,7 +127,6 @@ public class GameManager : MonoBehaviour{
     }
 
     //Cableado
-
     public void setActiveCableadoPlantaBaja( bool estado ){
         EdificioActual.Cableado[0].SetActive( estado );
     }
@@ -133,4 +142,5 @@ public class GameManager : MonoBehaviour{
     public void setActiveCableadoPiso3( bool estado ){
         EdificioActual.Cableado[3].SetActive( estado );
     }
+
 }

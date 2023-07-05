@@ -21,16 +21,16 @@ public class ControladorCamara : MonoBehaviour{
         float delta_time = Time.deltaTime * 40;
         if( Input.GetMouseButton( 1 ) ){
             Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible   = false;
+            Cursor.visible = false;
             float velocity_rot = Input.GetKey( KeyCode.LeftShift ) ? 3 : 1;
-            transform.Rotate( new Vector3( 0, sense_rot * Input.GetAxis( "Mouse X" ), 0 )    * ( delta_time * velocity_rot ), Space.World );
-            transform.Rotate( new Vector3( -sense_rot   * Input.GetAxis( "Mouse Y" ), 0, 0 ) * ( delta_time * velocity_rot ), Space.Self );
+            transform.Rotate( new Vector3( 0, sense_rot * Input.GetAxisRaw( "Mouse X" ), 0 ) * ( delta_time * velocity_rot ), Space.World );
+            transform.Rotate( new Vector3( -sense_rot * Input.GetAxisRaw( "Mouse Y" ), 0, 0 ) * ( delta_time * velocity_rot ), Space.Self );
         }
         else if( Input.GetMouseButton( 2 ) ){
             Cursor.lockState =  CursorLockMode.Locked;
             Cursor.visible   =  false;
-            target_position  -= transform.right * ( sense_mov_wheel * Input.GetAxis( "Mouse X" ) * delta_time );
-            target_position  -= transform.up    * ( sense_mov_wheel * Input.GetAxis( "Mouse Y" ) * delta_time );
+            target_position  -= transform.right * ( sense_mov_wheel * Input.GetAxisRaw( "Mouse X" ) * delta_time );
+            target_position  -= transform.up    * ( sense_mov_wheel * Input.GetAxisRaw( "Mouse Y" ) * delta_time );
         }
         else{
             Cursor.lockState = CursorLockMode.None;
@@ -39,8 +39,8 @@ public class ControladorCamara : MonoBehaviour{
 
         float velocity = Input.GetKey( KeyCode.LeftShift ) ? 3 : 1;
 
-        target_position += transform.right   * ( sense_mov * Input.GetAxis( "Horizontal" ) * delta_time * velocity );
-        target_position += transform.forward * ( sense_mov * Input.GetAxis( "Vertical" )   * delta_time * velocity );
+        target_position += transform.right   * ( sense_mov * Input.GetAxisRaw( "Horizontal" ) * delta_time * velocity );
+        target_position += transform.forward * ( sense_mov * Input.GetAxisRaw( "Vertical" )   * delta_time * velocity );
 
         //lerp
         transform.position = Vector3.Lerp( transform.position, target_position, 0.1f );
