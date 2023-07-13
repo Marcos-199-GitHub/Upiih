@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour{
     public ControladorCamara Controlador_camara;
     public GameObject        ToggleSelector;
     public GameObject        ToggleEscritorios;
+    public GameObject        ToggleRacks;
     public Text              TextoEdificioActual;
 
     public SelectorComponentes Selector_Componentes;
@@ -42,6 +43,7 @@ public class GameManager : MonoBehaviour{
         }
 
         ToggleEscritorios.SetActive( EdificioActual != null && EdificioActual.Escritorios != null );
+        ToggleRacks.SetActive( EdificioActual       != null && EdificioActual.Racks       != null );
     }
 
     private void refresh(){
@@ -69,6 +71,10 @@ public class GameManager : MonoBehaviour{
 
     public void setActiveEscritorios( bool estado ){
         EdificioActual.Escritorios.SetActive( estado );
+    }
+
+    public void setActiveRacks( bool estado ){
+        EdificioActual.Racks.SetActive( estado );
     }
 
     //Muros

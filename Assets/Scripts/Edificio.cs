@@ -8,6 +8,7 @@ public class Edificio : MonoBehaviour{
     public GameObject[] Invisibles;
     public GameObject   Azotea;
     public GameObject   Escritorios;
+    public GameObject   Racks;
     public GameObject[] Muros;
     public GameObject[] Puertas;
     public GameObject[] Suelos;
@@ -22,7 +23,6 @@ public class Edificio : MonoBehaviour{
         foreach( GameObject obj in Invisibles ){
             obj.SetActive( true );
         }
-        
     }
 
     public void desactivar(){
@@ -47,14 +47,18 @@ public class Edificio : MonoBehaviour{
         foreach( GameObject obj in Cableado ){
             obj.SetActive( true );
         }
+
         if( Escritorios != null ){
             Escritorios.SetActive( true );
         }
+
+        if( Racks != null ){
+            Racks.SetActive( true );
+        }
+
         foreach( GameObject obj in Invisibles ){
             obj.SetActive( false );
         }
-
-        
     }
 
 }
